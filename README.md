@@ -44,9 +44,9 @@ python manage.py runserver
 
 Документация для API доступна по адресу http://127.0.0.1:8000/redoc/ после запуска сервера разработчика. Документация представлена в формате Redoc.
 
-### Примеры:
+### Пример:
 ```
-http://127.0.0.1:8000/api/v1/posts/
+GET запрос http://127.0.0.1:8000/api/v1/posts/
 ```
 <img width="364" alt="код" src="https://github.com/Tatiana314/api_final_yatube/assets/124789269/52ce389b-04dd-4ef6-b4ea-3953e2a540ef">
 
