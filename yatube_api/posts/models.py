@@ -28,7 +28,7 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to='posts/', null=True, blank=True)
 
-    class Metta:
+    class Meta:
         ordering = ('pub_date')
 
     def __str__(self):
@@ -49,7 +49,7 @@ class Comment(models.Model):
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True)
 
-    class Metta:
+    class Meta:
         ordering = ('created')
 
 
