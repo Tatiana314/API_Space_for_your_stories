@@ -16,6 +16,5 @@ router_1.register(
 
 urlpatterns = [
     path(f'{VERSION}/', include((router_1.urls))),
-    path(f'{VERSION}/', include('djoser.urls')),
     path(f'{VERSION}/', include('djoser.urls.jwt')),
 ]

@@ -28,6 +28,9 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to='posts/', null=True, blank=True)
 
+    class Metta:
+        ordering = ('pub_date')
+
     def __str__(self):
         return POST_DATA.format(
             text=self.text,
@@ -45,6 +48,9 @@ class Comment(models.Model):
     text = models.TextField()
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True)
+
+    class Metta:
+        ordering = ('created')
 
 
 class Follow(models.Model):

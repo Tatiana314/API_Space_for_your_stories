@@ -1,28 +1,29 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import mixins, viewsets, filters
+from rest_framework import filters, mixins, viewsets
 from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticated, IsAuthenticatedOrReadOnly
+)
 
-
-from posts.models import Group, Post
+from api.permissions import AuthorOrReadOnly
 from api.serializers import (
     CommentSerializer, FollowSerializer, GroupSerializer, PostSerializer
 )
-from api.permissions import AuthorOrAuthorization
+from posts.models import Group, Post
 
 
 class GroupViewset(viewsets.ReadOnlyModelViewSet):
     """Получаем список или одну группу по id."""
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = (AuthorOrAuthorization,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class PostViewSet(viewsets.ModelViewSet):
     """Получаем/изменяем/создаем посты."""
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (AuthorOrAuthorization,)
+    permission_classes = (IsAuthenticatedOrReadOnly, AuthorOrReadOnly)
     pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):
@@ -32,7 +33,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     """Получаем/изменяем/создаем комментарии."""
     serializer_class = CommentSerializer
-    permission_classes = (AuthorOrAuthorization,)
+    permission_classes = (IsAuthenticatedOrReadOnly, AuthorOrReadOnly)
 
     def post_object(self):
         return get_object_or_404(Post, id=self.kwargs.get("post_id"))
