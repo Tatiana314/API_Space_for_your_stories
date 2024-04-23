@@ -44,7 +44,7 @@ DEBUG=True
 ```
 Выполнить миграции и запустить проект:
 ```
-python manage.py migrate && python manage.py runserver
+python yatube_api/manage.py migrate && python yatube_api/manage.py runserver
 ```
 
 Документация для API доступна по адресу http://127.0.0.1:8000/redoc/. 
