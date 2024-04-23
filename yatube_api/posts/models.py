@@ -29,7 +29,7 @@ class Post(models.Model):
         upload_to='posts/', null=True, blank=True)
 
     class Meta:
-        ordering = ('pub_date')
+        ordering = ('pub_date',)
 
     def __str__(self):
         return POST_DATA.format(
@@ -50,7 +50,7 @@ class Comment(models.Model):
         'Дата добавления', auto_now_add=True, db_index=True)
 
     class Meta:
-        ordering = ('created')
+        ordering = ('created',)
 
 
 class Follow(models.Model):
